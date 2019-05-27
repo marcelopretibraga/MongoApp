@@ -1,0 +1,59 @@
+﻿@model IEnumerable<MongoApp.Models.Servidor>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.categoria)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.cargo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.setor_siape)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.disciplina_ingresso)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.nome)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.categoria)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.cargo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.setor_siape)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.disciplina_ingresso)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.nome)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
