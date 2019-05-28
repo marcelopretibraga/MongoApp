@@ -1,0 +1,55 @@
+﻿@model MongoApp.Models.Servidor
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h2>Edit</h2>
+
+<h4>Servidor</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="categoria" class="control-label"></label>
+                <input asp-for="categoria" class="form-control" />
+                <span asp-validation-for="categoria" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="cargo" class="control-label"></label>
+                <input asp-for="cargo" class="form-control" />
+                <span asp-validation-for="cargo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="setor_siape" class="control-label"></label>
+                <input asp-for="setor_siape" class="form-control" />
+                <span asp-validation-for="setor_siape" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="disciplina_ingresso" class="control-label"></label>
+                <input asp-for="disciplina_ingresso" class="form-control" />
+                <span asp-validation-for="disciplina_ingresso" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="nome" class="control-label"></label>
+                <input asp-for="nome" class="form-control" />
+                <span asp-validation-for="nome" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="setor_suap" class="control-label"></label>
+                <input asp-for="setor_suap" class="form-control" />
+                <span asp-validation-for="setor_suap" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

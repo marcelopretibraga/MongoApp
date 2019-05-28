@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using MongoApp.Models;
+using MongoDB.Bson;
 using MongoDB.Driver;
 
 namespace MongoApp.Controllers
@@ -32,6 +33,42 @@ namespace MongoApp.Controllers
             return View();
         }
 
+        [HttpGet]
+        public IActionResult Delete(string Id)
+        {
+            //View(_mongoDBContext.Servidores.Find(s => s.Id == ObjectId.Parse(Id)));
+            var servidorDel = _mongoDBContext.Servidores
+                .Find(s => s.Id == ObjectId.Parse(Id)).FirstOrDefault();
+            return View(servidorDel);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        public IActionResult DeleteConfirmed(string Id)
+        {
+            var servidorDel = _mongoDBContext.Servidores
+                .DeleteOne(s => s.Id == ObjectId.Parse(Id));
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult Edit(string Id)
+        {
+            var serv = _mongoDBContext.Servidores.Find(s => s.Id == ObjectId.Parse(Id)).FirstOrDefault();
+            return View(serv);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(Servidor servidor)
+        {
+            if (ModelState.IsValid)
+            {
+                var filter = new BsonDocument("_id", servidor.Id);
+                //var filter = Builders<Servidor>.Filter.Eq(s => s.Id, servidor.Id);
+                _mongoDBContext.Servidores.ReplaceOne(filter, servidor);
+                
+                return RedirectToAction("Index");
+            }
+            return View();
+        }
 
     }
 }
