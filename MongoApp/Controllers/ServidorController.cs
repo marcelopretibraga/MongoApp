@@ -57,11 +57,12 @@ namespace MongoApp.Controllers
         }
 
         [HttpPost]
-        public ActionResult Edit(Servidor servidor)
+        public ActionResult Edit(Servidor servidor, string id)
         {
             if (ModelState.IsValid)
             {
-                var filter = new BsonDocument("_id", servidor.Id);
+                servidor.Id = ObjectId.Parse(id);
+                var filter = new BsonDocument("_id", ObjectId.Parse(id));
                 //var filter = Builders<Servidor>.Filter.Eq(s => s.Id, servidor.Id);
                 _mongoDBContext.Servidores.ReplaceOne(filter, servidor);
                 
